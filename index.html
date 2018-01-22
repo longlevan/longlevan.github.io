@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>longlevan's page</title>
+	<style>
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0; 
+			overflow: hidden;
+			border: 1px solid #e7e7e7;
+			background-color: #f3f3f3;
+		}
+		
+		li {
+			float: left;		
+		}
+		li a{
+			display: block;
+			color: #666;
+			text-align: center;
+			padding: 14px 16px;
+			text-decoration: none;
+		}
+		li a:hover:not(.active) {
+			background-color: #ddd;
+		}
+		li a.active{
+			color:white;
+			background-color: #4CAF50;
+		}
+
+		.dropdown{
+			float: left;
+			overflow: hidden;
+		}
+		.dropdown.dropbtn{
+			font-size: 16px;
+			border: none;
+			outline: none;
+			color: white;
+			padding: 14 px 16 px;
+			background-color: inherit;
+		}
+		.dropdown-content {
+			display: none;
+			position: absolute;
+			background-color: #f9f9f9;
+			min-width: 160px;
+			box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+			z-index: 1;
+		}
+		.dropdown-content a{
+			float: none;
+			color: black;
+			padding: 12px 16px;
+			text-decoration: none;
+			display: block;
+			text-align: left;
+		}
+		.dropdown-content a:hover {
+			background-color: #ddd;
+		}
+		.dropdown:hover .dropdown-content {
+			display: block;
+		}
+
+		<!-- -->
+		body{
+			margin: 1;
+		}
+		/* Creat two unequal colums that floats next to each other*/
+		.column {
+			float: left;
+			padding: 10px;
+		}
+		.left{
+			width: 25%;
+		}
+		/* Clear floats after the columns*/
+		.row:after{
+			content: "";
+			display: table;
+			clear: both;
+		}
+
+		</style>
+	</head>
+
+	
+	<body>
+	<ul>
+	  <li><a href="index.html"><font size="6">Home</font></a></li>
+	  <li><a href="blog.html"><font size="6">Blog</font></a></li>
+
+	  <div class="dropdown">
+		  <button class="dropbtn"><font size="6">How-Tos</font>
+			  <i class="fa fa-caret-down"></i>
+		  </button>
+		  <div class ="dropdown-content">
+			  <a href="trnsys.html">Trnsys</a>
+		  </div>
+	  </div>	
+	  <li><a href="bookmarks.html" target="_blank"><font size="6">Bookmarks</font></a></li>
+	  <li><a href="https://longlevan.weebly.com/about-me.html" target="_blank"><font size="6">About</font></a></li>
+	</ul>	
+	</body>
+
+	<br>
+
+	<div class="row">
+		<div class="column left" style="background-color:white;">
+			<img src="https://longlevan.weebly.com/uploads/5/6/6/8/56680569/632028_1.jpg" alt="Portrait"> <br>
+			<br>
+			<p>
+			<b>V&#259;n Long L&#234;</b> <br>
+			Research Engineer <br>
+			Energy &amp; Building <br>
+			<br>
+			<b><font color:blue> Cenaero ASBL</font></b><br>
+			Rue des Fr&#232;re Wright 29 <br> 
+			B&#226;timent Eole <br>
+			6041 Gosselies <br>
+			Belgium <br>
+			Telephone: <br>
+			E-mail: long.le-van@outlook.com <br>
+
+			</p>
+			<a href="https://fr.linkedin.com/in/van-long-le-15148254">Linkedin</a>
+			<br>
+			<a href="#">tiwtter</a>
+			<br>
+			<a href="#">Github</a>
+
+		</div>
+		<div class="column right" style="background-color:white;">
+			Text dkkskddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddssssssssd<br>
+			dkdjkdfkdjf<br>
+			dkfdkfjkd<br>
+			Text dkkskddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddssssssssd<br>
+			dkdjkdfkdjf<br>
+			dkfdkfjkd<br>
+			Text dkkskddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddssssssssd<br>
+			dkdjkdfkdjf<br>
+			dkfdkfjkd<br>
+			Text dkkskddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddssssssssd<br>
+			dkdjkdfkdjf<br>
+			dkfdkfjkd<br>
+		</div>
+	</div>
+	
+</html>
