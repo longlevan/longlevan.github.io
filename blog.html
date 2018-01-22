@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<!--This is a comment. Head style-->
+		<head>
+				<title>Blog posts</title>
+				<style>
+					ul {
+						list-style-type: none;
+						margin: 0;
+						padding: 0; 
+						overflow: hidden;
+						border: 1px solid #e7e7e7;
+						background-color: #f3f3f3;
+					}
+					
+					li {
+						float: left;		
+					}
+					li a{
+						display: block;
+						color: #666;
+						text-align: center;
+						padding: 14px 16px;
+						text-decoration: none;
+					}
+					li a:hover:not(.active) {
+						background-color: #ddd;
+					}
+					li a.active{
+						color:white;
+						background-color: #4CAF50;
+					}
+					</style>
+				</head>
+<!--This is a comment. Menu bar-->				
+				<body>
+				<ul>
+				  <li><a href="index.html"><font size="6">Home</font></a></li>
+				  <li><a href="blog.html"><font size="6">Blog</font></a></li>	
+				  <li><a href="https://longlevan.weebly.com/about-me.html" target="_blank"><font size="6">About</font></a></li>
+				</ul>	
+				</body>
+
+<!--This is a comment. Another style, style for the tables-->	
+	<style>
+	table,th, td{
+	border: 1px solid black;
+	}
+	</style>
+
+<!--The body-->
+	<body style="background-color:beige">
+		<h1>TRNSYS</h1>
+		<p>In the C/C++ language, the argument needs to be replaced as shown in the table below.</p>
+		
+		<table style ="width:100%">
+		<tr> 
+			<td><strong>FORTRAN</strong></td>
+			<td width="195" valign="top"><strong>C/C++</strong></td>
+		</tr>
+		<tr>
+			<td width="167" valign="top"> <p>Integer</p></td>
+		       	<td width="195" valign="top"> <p>int*</p></td>
+		</tr>
+	       	<tr> 
+			<td width="167" valign="top"> <p>Real(8),<br>Double Precision</p></td> 
+			<td width="195" valign="top"> <p>double*</p></td>
+		</tr> 
+		<tr> 
+			<td width="167" valign="top"> <p>Character(Len=n)</p></td> 
+			<td width="195" valign="top"> <p>char*, size_t n</p></td>
+		</tr>
+		</table>
+
+		<h2>Integer</h2>
+			<b>TRNSYS.h<b>
+				<p><code>extern "C" __declspec(dllimport) void _cdecl SETTYPEVERSION(int* ver);</code></p>
+				<p><code>#define setTypeVersion                 SETTYPEVERSION</code></p>
+	</body>
+
+	<hr>
+	<body>
+		<h1>Compiling a software from source in linux</h1>
+		<p>For installing the software in a specified directory <br>
+		<code>
+			mkdir ~/directory <br>
+			./configure --prefix=$HOME/directory <br>
+			make <br>
+			make install<br>
+		</code>
+		</p>
+		
+		<p>
+			More information can be found <a href="https://blog.eduardovalle.com/2015/10/15/installing-software-without-root/">here</a>
+		</p>
+	</body>
+
+</html>
