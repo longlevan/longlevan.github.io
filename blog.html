@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html>
 	<!--This is a comment. Head style-->
-		<head>
-				<title>Blog posts</title>
-				<style>
-					body{
-						margin: 2%;
-					}
-					ul {
-						list-style-type: none;
-						margin: 0;
-						padding: 0; 
-						overflow: hidden;
-						border: 1px solid #e7e7e7;
-						background-color: #f3f3f3;
-					}					
+	<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Blog posts</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script type="text/javascript" src="main.js"></script>
+	<style>
+		body{
+			margin: 2%;
+		}
+		ul {
+			list-style-type: none;
+			margin: 0;
+			padding: 0; 
+			overflow: hidden;
+			border: 1px solid #e7e7e7;
+			background-color: #f3f3f3;
+		}					
 					li {
 						float: left;		
 					}
@@ -32,26 +37,20 @@
 						color:white;
 						background-color: #4CAF50;
 					}
+
+					table,th, td{
+						border: 1px solid black;
+					}
 					</style>
-				</head>
+	</head>
 <!--This is a comment. Menu bar-->				
-				<body>
+	<body style="background-color:white">
 				<ul>
 				  <li><a href="index.html"><font size="6">Home</font></a></li>
 				  <li><a href="blog.html"><font size="6">Blog</font></a></li>	
-				  <li><a href="https://longlevan.weebly.com/about-me.html" target="_blank"><font size="6">About</font></a></li>
+				  <li><a href="about.html" target="_blank"><font size="6">About</font></a></li>
 				</ul>	
-				</body>
-
-<!--This is a comment. Another style, style for the tables-->	
-	<style>
-	table,th, td{
-	border: 1px solid black;
-	}
-	</style>
-
 <!--The body-->
-	<body style="background-color:white">
 		<h1>TRNSYS</h1>
 		<details>
 			<summary>Tips and tricks for TRNSYS</summary>
@@ -131,6 +130,11 @@
 		:%s/\<foo\>/bar/gc <br>
 		Change only whole words exactly matching 'foo' to 'bar'; ask for confirmation. <br>
 		<b>sed, a stream editor</b>
+
+		Q: How to delete all lines of the files in Vim <br>
+		A: <br>
+		1. Type <code>gg</code> to move the cursor to the first line of the file. <br>
+		2. Type <code>dG</code> to delete all the lines. 
 		</p>
 		</details>
 	<hr>
