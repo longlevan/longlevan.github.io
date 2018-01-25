@@ -4,6 +4,9 @@
 		<head>
 				<title>Blog posts</title>
 				<style>
+					body{
+						margin: 2%;
+					}
 					ul {
 						list-style-type: none;
 						margin: 0;
@@ -11,8 +14,7 @@
 						overflow: hidden;
 						border: 1px solid #e7e7e7;
 						background-color: #f3f3f3;
-					}
-					
+					}					
 					li {
 						float: left;		
 					}
@@ -60,7 +62,7 @@
 		</tr>
 		<tr>
 			<td width="167" valign="top"> <p>Integer</p></td>
-		       	<td width="195" valign="top"> <p>int*</p></td>
+		    <td width="195" valign="top"> <p>int*</p></td>
 		</tr>
 	       	<tr> 
 			<td width="167" valign="top"> <p>Real(8),<br>Double Precision</p></td> 
@@ -92,6 +94,41 @@
 		
 		<p>
 			More information can be found <a href="https://blog.eduardovalle.com/2015/10/15/installing-software-without-root/">here</a>
+		</p>
+		
+		<p>
+			Linux: tar extract files <br>
+			Extract or Unpack a TarBall file <br>
+			To unpack or extract a tar file, type: <br>
+
+			<code>
+				tar -xvf file.tar
+			</code>
+			<p>
+				More information can be found <a href="https://www.cyberciti.biz/faq/tar-extract-linux/">here</a>
+			</p>
+		
+		</p>
+
+
+
+		<hr>
+		<b>Vim</b>
+		<p>undo: u <br>
+		redo: ctrl+r <br>
+		The :substitute command searches for a text pattern, and replaces it with a text string
+		:%s/foo/bar/g <br>
+		Find each occurence of 'foo' (in all lines), and replace it with 'bar'<br>
+		:s/foo/bar/g <br>
+		Find each occurrence of 'foo' (in the current line only), and replace it with 'bar'. <br>
+		:%s/foo/bar/gc <br>
+		Change each 'foo' to 'bar', but ask for confirmation first. <br>
+		:%s/\<foo\>/bar/gc <br>
+		Change only whole words exactly matching 'foo' to 'bar'; ask for confirmation. <br>
+
+
+		<b>sed, a stream editor</b>
+
 		</p>
 	</body>
 
