@@ -51,8 +51,10 @@
 	</style>
 
 <!--The body-->
-	<body style="background-color:beige">
+	<body style="background-color:white">
 		<h1>TRNSYS</h1>
+		<details>
+			<summary>Tips and tricks for TRNSYS</summary>
 		<p>In the C/C++ language, the argument needs to be replaced as shown in the table below.</p>
 		
 		<table style ="width:100%">
@@ -78,11 +80,12 @@
 			<b>TRNSYS.h<b>
 				<p><code>extern "C" __declspec(dllimport) void _cdecl SETTYPEVERSION(int* ver);</code></p>
 				<p><code>#define setTypeVersion                 SETTYPEVERSION</code></p>
-	</body>
-
+		</details>
 	<hr>
-	<body>
-		<h1>Compiling a software from source in linux</h1>
+	<h1>OS</h1>	
+	<details>
+		<summary>Tips and tricks for using operating system (Linux,Windows,etc.)</summary>
+		<h2>Compiling a software from source in linux</h2>
 		<p>For installing the software in a specified directory <br>
 		<code>
 			mkdir ~/directory <br>
@@ -109,11 +112,13 @@
 			</p>
 		
 		</p>
-
-
+	</details>
 
 		<hr>
-		<b>Vim</b>
+		<h1>Vim</h1>
+		<details>
+			<summary>Read more</summary>
+		
 		<p>undo: u <br>
 		redo: ctrl+r <br>
 		The :substitute command searches for a text pattern, and replaces it with a text string
@@ -125,11 +130,25 @@
 		Change each 'foo' to 'bar', but ask for confirmation first. <br>
 		:%s/\<foo\>/bar/gc <br>
 		Change only whole words exactly matching 'foo' to 'bar'; ask for confirmation. <br>
-
-
 		<b>sed, a stream editor</b>
-
 		</p>
+		</details>
+	<hr>
+
+	<script type="text/javascript">
+	/*
+	* World population counter - by Javascript Kit (http://www.javascript.com)
+	* Based on code by Adam Brown
+	* This notice Must stay intact for use
+	* Visis JavaScript Kit (http://www.javascriptkit.com) for this script and more
+	*/
+	function maind()
+	{
+		startdate = new Date()
+		now(startdate.getYear(), startdate.getMonth(), startdate.getDate(), startdate.getHours(), startdate.getMinutes(), startdate.getSeconds())
+	}
+
+	</script>
 	</body>
 
 </html>
