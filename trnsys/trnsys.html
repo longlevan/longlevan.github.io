@@ -65,14 +65,16 @@
                 .dropdown:hover .dropdown-content {
                     display: block;
                 }
-        
                 </style>
+        <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+      </script>
             </head>
         
             
             <body>
             <ul>
-              <li><a href="index.html"><font size="6">Home</font></a></li>
+              <li><a href="../index.html"><font size="6">Home</font></a></li>
               <li><a href="blog.html"><font size="6">Blog</font></a></li>
         
               <div class="dropdown">
@@ -104,9 +106,67 @@
 
 <p>Tools</p>
 <a href="http://view3d.sourceforge.net/"><b>View3D</b></a>
-<p>View3D is a command-line tool for evaluating radiation view factors for scenes with complex 2D and 3D geometry. It uses an adaptive integration method to calculate the view factors between faces where there is partial obstruction from inbetween faces.
+<p>View3D is a command-line tool for evaluating radiation view factors for scenes with complex 2D and 3D geometry. It uses an adaptive integration method to calculate the view factors between faces where there is partial obstruction from inbetween faces. </p>
 
-    </p>
+<h1>Creating TRNSYS component c/c++ header file</h1>
+TRNSYS has one more input / output distinction; that is DERIVATIVES. Components that solve
+differential equations numerically will often have DERIVATIVES as well as INPUTS, OUTPUTS
+and PARAMETERS. From the simulation user’s point of view, the DERIVATIVES for a given
+Type specify initial values, such as the initial temperatures of various nodes in a thermal storage
+tank or the initial zone temperatures in a multi zone building. At any given point in time, the
+DERIVATIVES of a Type hold the results of the solved differential equation. If these
+DERIVATIVES are set in a component as OUTPUTS, the simulation user can see, plot and
+output these values.
+<!--###################################################################################-->
+To get the name of the function of TRNSYS <br>
+<i>source: http://www.kankyoukei.com/2016/04/trnsyscc6.html </i> <br>
 
+Get the name of the function of TRNSYS that is published. Function of TRNSYS is TRNDLL.DLL (C: TRNSYS17 \ Exe \ TRNDLL.DLL) to, 
+but contains all the functions that have been published under a different name and when using in FORTRAN There are multiple. To call from the C / C ++, 
+to get the name of the function directly from TRNDLL.DLL. Taken out of the function name is done with the development tools included in Visual Studio.
+
+Run the following batch file from the command prompt, and prepares the use environment of development tools. Below is a working example of the PC 
+that Visual Studio 2013 has been installed.
+
+<code>"C: \ Program Files (X86) \ Microsoft Visual Studio 12.0 \ Common7 \ Tools \ Vsvars32.Bat"</code>
+First, and prepares for using the development tools. Start the command prompt, type [Win] + in the dialog displayed by clicking the [R] "cmd" from the keyboard.
+
+Then, using the dumpbin.exe 
+
+
+
+
+<h1>System of differential equations</h1>
+<p>
+    Solving differential equations in a TRNSYS Type is an easy task <br>
+    <b>Note:</b> <font color="red">TRNSYS uses <b>AVERAGED</b> values on the time step, NOT INSTANTANEOUS values. So if you compare results from TRNSYS to other programs or hand calculations, you often have to convert "end-of-time-step" values to averaged values.</font>
+</p>
+<ul>
+    <li>Use the DTDT and T arrays</li>
+    T and DTDT are managed by the TRNSYS solver and are 
+   available to any TRNSYS Types. To use them, you have
+   to specify a number of "DERIVATIVES" in the TRNSYS 
+   deck. The principle is that you assign values to DTDT in
+   your Type and the TRNSYS solver will give you the 
+   result of the integration (T).t is a pure numerical
+   solution so there is no restriction on the linearity.
+   It is probably the easiest approach because you don't 
+   have to store values at the end of a time step and get 
+   them back at next time step, everything is done for you.
+   <b> <font color="red">The downside is that you may have to use small time steps 
+   to reach a stable solution in some cases.</font></bi>
+   TRNSYS versions 11.1 and higher provide two methods for solving differential equations which
+may occur in component models: an approximate analytical solution using the subroutine
+SolveDiffEq (see Section 7.4.4.15), and a numerical solution using one of three numerical
+methods (see Manual 06-TRNEdit). 
+The analytical method is recommended whenever practical it
+is possible to write the differential equation in the following general form:
+$${dT \over dt} = aT +b$$
+The numerical method generally requires shorter time steps and more computation for
+comparable accuracy and numerical stability. Users intending to utilize the Powell’s method
+TRNSYS solver (SOLVER 1) should use the SolveDiffEq subroutine whenever possible. 
+
+
+</ul>
 </body>
 </html>
