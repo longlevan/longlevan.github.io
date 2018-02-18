@@ -116,10 +116,142 @@ Type specify initial values, such as the initial temperatures of various nodes i
 tank or the initial zone temperatures in a multi zone building. At any given point in time, the
 DERIVATIVES of a Type hold the results of the solved differential equation. If these
 DERIVATIVES are set in a component as OUTPUTS, the simulation user can see, plot and
+output these values. <br>
+<br>
+<h2>Rereading Parameters</h2>
+If two or more instances of a given Type are to be used in a simulation, it is necessary to reread
+the parameter values so that the local variables within the Type’s code reflect the values
+associated with the current instance. <br>
+
+<h2>Fundamentals</h2>
+Inputs: 
+Parameters:
+Outputs: All outputs are assumed to be time dependent and are recomputed by a component
+Derivatives: Components that solve
+differential equations numerically will often have DERIVATIVES as well as INPUTS, OUTPUTS
+and PARAMETERS. From the simulation user’s point of view, the DERIVATIVES for a given
+Type specify initial values, such as the initial temperatures of various nodes in a thermal storage
+tank or the initial zone temperatures in a multi zone building. At any given point in time, the
+DERIVATIVES of a Type hold the results of the solved differential equation. If these
+DERIVATIVES are set in a component as OUTPUTS, the simulation user can see, plot and
 output these values.
+
+<h3>Version Signing</h3>
+Version signing is one of a series of special calls that is made to a Type when the Type is not
+intended to perform any manipulations of inputs or outputs. Once, at the very beginning of a
+simulation, a Type needs to log itself as having been written using a given TRNSYS coding
+standard.
+
+<h3>"Last Call" Manipulations</h3>
+The second special case call to Types occurs at the very END of each simulation. Whether the
+simulation ends correctly or ends in error, each Type is recalled by the TRNSYS kernel before the
+simulation shuts down. This call allows Types to perform any “last call” manipulations that may be
+necessary. These may include closing external data files that were opened by the Type during
+the course of a simulation, or calculating summary information that may have been collected
+during a simulation. If the type does not require any such last call manipulation, so it is advisable 
+to simply return control directly to the Trnsys kernel.
+<br>
+You may want your component to actually do something at the end of the simulation. It could, for
+instance print a message to the list file or close logical units that were used during the simulation.
+Standard component Type 22 (Iterative Feedback controller) performs end of the simulation
+manipulations that you might use as an example.
+<br>
+
+<h3>"End of Time Step" manipulations</h3>
+At the end of each time step, each Type in a simulation is recalled. The Type should call the
+AccessFunction “getIsEndOfTimestep().” Note that the function will return “true” even if a
+converged solution was not found at the current time step. 
+<br>
+
+the “end of time step” call allows a number of different manipulations to be performed such as resetting 
+counters. For users familiar with the concept of manually updating storage variables, the concept of “dynamic” 
+and “static” storage variables were introduced with TRNSYS 17. Refer to section 7.4.4.17
+
+<h3>Storage of Data between Time Steps</h3>
+With the release of TRNSYS v.17, the concept of data storage between time steps was further
+simplified into two main usages: “static” and “dynamic.” If the user has a component that was
+written using an earlier coding standard, both the “s array” and the set/getStorageVars() functions
+are retained in the kernel so that the component does not need to be modified. However, if the
+user is writing a component using the TRNSYS v.17 coding standard, the user should not make
+use of these earlier features as they are incompatible with the more recent standard.
+<h4>Static storage</h4>
+
+
+<h4>Dynamic storage</h4>
+
+<br>
+<h1>Creating a Dynamic-Link Library using MS Visual Studio</h1>
+Opent MS Visual Studio
+File\New\Project
+
+Installed\Visual C++\ Dynamic-Link Library (DLL)
+
+Name: Name of dll project <br>
+Location: The location of source code <br>
+Solution: Create new solution <br>
+Solution name: <br>
+
+Step 2: Configuration properties
+Configuration: Active (Debug) Platform x64
+General: let it as default
+- Target Platform: Windows 10
+- Windows SDK Version: 10.0.16299.0
+- Output Directory: $(SolutionDir)
+
+Debugging: let it as default
+
+VC++ Directories: let it as default
+
+C/C++
+general: 
+- Additional Include Directories: adding trnsys.h location
+- Optimization: do nothing
+- Preprocessor: Verify if all is in majuscule
+- Code generation: 
+- All Options: adding  trnsys.h location to Additional Include Directories
+
+/Yu"stdafx.h" /GS /W3 /Zc:wchar_t /ZI /Gm /Od /sdl /Fd"x64\Debug\vc141.pdb" /Zc:inline /fp:precise /D "_DEBUG" /D "TRNSYSCOMPONENTSLIBX64_EXPORTS" /D "_WINDOWS" /D "_USRDLL" /D "_WINDLL" /D "_UNICODE" /D "UNICODE" /errorReport:prompt /WX- /Zc:forScope /RTC1 /Gd /MDd /Fa"x64\Debug\" /EHsc /nologo /Fo"x64\Debug\" /Fp"x64\Debug\TRNSYSComponentsLib_x64.pch" /diagnostics:classic 
+
+Linker
+General
+- Additional Library directories: 
+Input
+- Additional Dependencies
+
+
+What is the difference betwwen Release and Debug
+
+Visual Studio fatal error C1041/FS
+<code>fatal error C1041: cannot open program database 'c:\users\username\desktop\projectName\projectName\x64\debug\vc120.pdb'; if multiple CL.EXE write to the same .PDB file, please use /FS</code>
+
+The problem is because different projects in a solution hat the same intermediate directory
+changin
+<code>$(Platform)\$(Configuration)\ to $(Platform)\$(Configuration)\$(ProjectName)\</code>
+in 
+configuration properties->general->Intermediate directory
+
+
+Use "View > Other Windows > Property Manager" to bring up the Property Manager. It will show your projects and configurations.
+
+Right click a configuration, and select "Add New Project Property Sheet...". You can name it, and select a location that works for all your projects.
+
+Once created, you can edit its properties just as you would a build configuration.
+
+To use that property sheet as the basis for other projects, just right click the configuration or project, and select "Add Existing Property Sheet...". Browse to where you saved the original sheet, and it will be inherited.
+Any changes to the original sheet will be applied to any project that inherits it, unless they are overridden. If you go into properties higher up the chain, properties that override will have bold type for their values. To get them to always use the value in the base sheet, there will be a "inherit from parent or project defaults" option where applicable.
+
+Programming a Type in C++
+
+
+<br>
+
+
+
+
+
 <!--###################################################################################-->
 To get the name of the function of TRNSYS <br>
-<i>source: http://www.kankyoukei.com/2016/04/trnsyscc6.html </i> <br>
+<i>source: exp </i> <br>
 
 Get the name of the function of TRNSYS that is published. Function of TRNSYS is TRNDLL.DLL (C: TRNSYS17 \ Exe \ TRNDLL.DLL) to, 
 but contains all the functions that have been published under a different name and when using in FORTRAN There are multiple. To call from the C / C ++, 
