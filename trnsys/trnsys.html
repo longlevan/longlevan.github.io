@@ -65,6 +65,24 @@
                 .dropdown:hover .dropdown-content {
                     display: block;
                 }
+
+                toc_container{
+                    background: #f9f9f9 none repeat scroll 0 0;
+                    border: 1px solid #aaa;
+                    display: table;
+                    font-size: 95%;
+                    margin-bottom: 1em;
+                    padding: 20px;
+                    width: auto;
+                }
+
+                .toc_title{
+                    font-weight: 700;
+                    text-align: center;
+                }
+                toc_container li, toc_container ul, toc_container ul li{
+                    list-style: outside none none !important;
+                }
                 </style>
         <script type="text/javascript" async
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -90,9 +108,23 @@
         
               <li><a href="https://longlevan.weebly.com/about-me.html" target="_blank"><font size="6">About</font></a></li>
             </ul>	
+
+            <div id="toc_container">
+                    <p class="toc_title">Contents</p>
+                    <ul class="toc_list">
+                      <li><a href="#First_Point_Header">1 First Point Header</a>
+                      <ul>
+                        <li><a href="#First_Sub_Point_1">1.1 First Sub Point 1</a></li>
+                        <li><a href="#First_Sub_Point_2">1.2 First Sub Point 2</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="#Second_Point_Header">2 Second Point Header</a></li>
+                    <li><a href="#Third_Point_Header">3 Third Point Header</a></li>
+                    </ul>
+            </div>
             
 
-  <h1>Glossary</h1>
+  <h1 id="First_Point_Header">Glossary</h1>
   <a href="https://en.wikipedia.org/wiki/Mean_radiant_temperature">Mean radiant temperature</a>: is defined as the uniform temperature of an imaginary enclosure
   in which the radiant heat transfer from the human body is equal to the radiant heat transfer in the actual non-uniform enclosure <br>
 
@@ -190,13 +222,13 @@ Solution: Create new solution <br>
 Solution name: <br>
 <br>
 Step 2: Configuration properties <br>
-Configuration: Active (Debug) Platform x64
-General: let it as default
-- Target Platform: Windows 10
-- Windows SDK Version: 10.0.16299.0
-- Output Directory: $(SolutionDir)
+Configuration: Active (Debug) Platform x64 <br>
+General: let it as default <br>
+- Target Platform: Windows 10 <br>
+- Windows SDK Version: 10.0.16299.0 <br>
+- Output Directory: $(SolutionDir) <br>
 
-Debugging: let it as default
+Debugging: let it as default <br>
 
 VC++ Directories: let it as default
 
@@ -244,6 +276,13 @@ Programming a Type in C++
 <br>
 
 
+<!--###################################################################################-->
+<h1>How to debug your program</h1>
+As it is, debugging is an incredibly important part of programming. If you run upon errors, you need to know how to find the issue, and resolve it. 
+If you’re missing a semi-colon, you shouldn’t have to make a post to figure that out. <br>
+Anyway, we’ll start basic, from acknowledging and understanding a compiler error, to single-stepping through a program with your IDE’s debugger <br>
+Ref: C++ for Dummies 5th Edition by Stephen Randy Davis, pages 139-155 <br>
+<h2>Identifying an error</h2>
 
 
 
@@ -295,6 +334,16 @@ $${dT \over dt} = aT +b$$
 The numerical method generally requires shorter time steps and more computation for
 comparable accuracy and numerical stability. Users intending to utilize the Powell’s method
 TRNSYS solver (SOLVER 1) should use the SolveDiffEq subroutine whenever possible. 
+
+
+<h1>TRNSYS-Python</h1>
+Notice: <br>
+<ul>
+    <li>TRNSYS-python only works with python 3</li>
+    <li>the name of python script have to start with a minuscule</li>
+</ul>
+
+C++ offers native alternatives to achieve the functionality of named parameters: <br>
 
 
 </ul>
