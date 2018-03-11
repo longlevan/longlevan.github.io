@@ -187,6 +187,11 @@ instance print a message to the list file or close logical units that were used 
 Standard component Type 22 (Iterative Feedback controller) performs end of the simulation
 manipulations that you might use as an example.
 <br>
+The access function "getIsLastCallOfSimulation()" also returns a "true" result if the simulation terminates
+with a <b>fatal error</b>. In that case, the component that generates the error returns control to the TRNSYS 
+kernel, which calls all components one last time in order to perform their "end of simulation" operations.
+You can check if the very last call occurs because of an error or as part of the normal simulation process by 
+calling getNumberOfErrors
 
 <h3>"End of Time Step" manipulations</h3>
 At the end of each time step, each Type in a simulation is recalled. The Type should call the
@@ -196,7 +201,127 @@ converged solution was not found at the current time step.
 
 the “end of time step” call allows a number of different manipulations to be performed such as resetting 
 counters. For users familiar with the concept of manually updating storage variables, the concept of “dynamic” 
-and “static” storage variables were introduced with TRNSYS 17. Refer to section 7.4.4.17
+and “static” storage variables were introduced with TRNSYS 17. Refer to section 7.4.4.17 <br>
+<h4>Reseting Counters</h4>
+It is sometimes advantageous to count the number of times that a particular event has occurred during a
+given time step. One example might be a controller that counts the number of times that it has calculated
+a different value of its control signal during a given time step. After a certain number of different decisions,
+the controller “sticks” and the calculated output state no longer changes. At the end of the time step after
+all components have converged, it is necessary to reset the iteration counter to zero. This could be done
+as one of the end of time step manipulations when the call to the getIsEndOfTimestep() Access Function
+returns “true.
+
+<h4>Updating storage variables</h4>
+With the addition of the concept of "dynamic" storage, this step is no longer needed
+
+<h4>Updating Automatic reporting (SSR) variables</h4>
+WWith the release of TRNSYS 18.0 the concept of automatic reports was introduced. If a component is to
+automatically report either integrated or min/max values, those values need to be updated at the end of
+each time step. 
+
+<h3>Initialization call (First call of simulation) manipulations</h3>
+At the very start of each simulation, after all Types have version signed themselves each Type should initialize itself
+Types should call the “getIsFirstCallOfSimulation()” Access Function to determine when these initializations should take place. 
+There is a very specific set of steps that each Type should take at this point in the simulation. With the
+release of TRNSYS version 16, the steps taken by a Type during the initialization step changed from what
+had been done previously. The most important thing to keep in mind concerning the initialization call is
+that <b> a Type should NOT read its parameter list</b>,nor should it perform ANY calculation of output values. It
+should perform the following operations:
+Tell the kernel how many PARAMETERS are expected to be found in the input file by calling the
+setNumberOfParameters() AccessFunction as follows:
+Call setNumberOfParameters(4)
+Tell the kernel how many INPUTS are expected to be found in the input file by calling the
+setNumberOfInputs() AccessFunction as follows:
+Call setNumberOfInputs(5)
+Tell the kernel how many DERIVATIVES are expected to be found in the input file by calling the
+setNumberOfDerivatives() AccessFunction as follows:
+Call setNumberOfDerivatives(0)
+Reserve the required amount of space in the global output array by calling the setNumberOfOutputs()
+AccessFunction as follows:
+Call setNumberOfOutputs(5)
+Set how the Type should be called using a call to setIterationMode(). Most Types will call this
+AccessFunction with a value of 1, indicating that the Type should be called every iteration whether or not
+its input values have changed. Types that are integrators or printers call the function with different values.
+Users programming this kind of Type should refer to section 7.4.3.5 for more information. The call to
+setIterationMode() is as follows:
+Call setIterationMode(1)
+Set the number of static and dynamic storage spots required using a call to the
+setNumberStoredVariables() AccessFunction. Refer to section 7.4.4.18 for fundamental information about
+static and dynamic data storage between time steps. It is again important to bear in mind that we are not
+setting initial values of the storage variables at this time, we are merely reserving space for later usage.
+For the water heater component, the following statement reserves the required space:
+Call setNumberStoredVariables(0,0)
+
+Return control to the TRNSYS kernel. Again, there are NO iterations performed during this time step.
+Therefore there should be NO calculations performed. To return control, add the following line:
+Return <br>
+<h4>Reserving space in the SSR</h4>
+During the initialization step any Types that are to be reported in the Simulation Summary Report (*.SSR)
+must reserve the number of spots that they wish to later use.  
+
+<h3>Start time manipulation</h3>
+Once the initialization steps were completed, control was returned to
+the TRNSYS kernel. The next time that each Type is called is when the simulation time is equal to the
+simulation start time. Throughout much of TRNSYS’s history (through version 15) there was no call to
+components at the simulation start time. After being called when getIsFirstCallOfSimulation() returned
+“true” for initialization (as described in section 7.3.11) Types were next called at the end of the first time
+step (TIME = InitialTime + TimeStep). With the release of TRNSYS 16.0, an important distinction was
+made by calling all Types once after they have been initialized but before time has advanced in the
+simulation. The point of this initial time call is to perform the following action <br>
+<br>
+First, read the local parameter list and set each parameter to a local variable. Parameter values can (and should)
+be read only at two places in a Type. The first is during this "Start time" call before time has progressed. 
+the other is during the "multiple unit manipulations" section. Only reading parameters at these two stages of the simulation 
+saves a great deal of comutational time (for c++ it seems that we have to read parameters all the times) because 
+in this manner, parameters (which do not change with time) are read only when they must be. In each of these two sections, 
+each parameter value is set equal to a local variable name that has been declared as a double precision variable  <br>
+
+the second step performed durign the "start time" manipulations section is to check each of the parameter values for validity
+parameters whose values cannot be negative, or whose values must be between 0 and 1, can be flagged as an error using a call 
+to the foundBadParamter() AccessFunction <br>
+
+Next, it is necessary to set the initial values of any static or dynamic storage variables that are used by
+the Type. This is accomplished simply by assigning local variable values to each of the spots in the array
+that is used to transfer information to and from the storage structure, then calling the
+setStaticArrayValue() and setDynamicArrayValueThisIteration() subroutines. The code used to set four
+initial storage values might look like the following <br>
+
+The final step performed during the “Start Time” manipulations section is to set the initial values of the
+outputs. It is essential that you set initial values here. Your Type should not perform any of its calculations
+at this point in time. If it does, then it will likely get one time step ahead of where it is supposed to be at
+this point in the simulation. Because of this restriction on performing calculations, it is often difficult to
+know what value to choose for an output initial value. A good default value is zero since that usually
+indicates to the user that the output has not yet been calculated. In the case of devices that have fluid
+flow through them, the outlet temperature and outlet flow rate of the fluid can often be set to the inlet
+temperature and inlet flow rate respectively. <br>
+<h4>Initializing the SSR</h4>
+During the initialization step any Types that are to be reported in the Simulation Summary Report (*.SSR)
+should initialize (set up) the specifics of the values that they wish to report.
+
+<h3>multiple unit manipulation</h3>
+
+<h3>Every time step manipulations</h3>
+<h4>Retrieve Stored Values</h4>
+At each iteration, a call should be made to the getDynamicArrayValueLastTimestep() and
+getStaticArrayValue() functions to retrieve stored values that are needed in calculations. 
+<h4>Retrieve input values</h4>
+Retrieving input values follows much the same pattern as that of retrieving parameter values. The inputs
+are available to each Type by means of the getInputValue() AccessFunction. The values are typically
+read to local variable names for convenience and then can be checked for validity in much the same way
+as parameters.
+<h4>Perform Calculations</h4>
+Once all of the input values have been retrieved, the heater performance calculations and control logic
+can be performed. 
+<h4>Set storage values</h4>
+Before exiting the Type at each iteration, it is good practice to update all appropriate storage variables.
+Obviously, if one or more of the storage variables is an initial value to be used for all iterative calculations
+at a given time step until convergence has been reached then it is not appropriate to update this value
+until the “End of Timestep” call
+<h4>Set outputs</h4>
+
+<h4>Return control</h4>
+The very last requirement is that a Type return control to the TRNSYS kernel after its computations are
+complete.
 
 <h3>Storage of Data between Time Steps</h3>
 With the release of TRNSYS v.17, the concept of data storage between time steps was further
