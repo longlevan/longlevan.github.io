@@ -226,9 +226,10 @@ There is a very specific set of steps that each Type should take at this point i
 release of TRNSYS version 16, the steps taken by a Type during the initialization step changed from what
 had been done previously. The most important thing to keep in mind concerning the initialization call is
 that <b> a Type should NOT read its parameter list</b>,nor should it perform ANY calculation of output values. It
-should perform the following operations:
-Tell the kernel how many PARAMETERS are expected to be found in the input file by calling the
-setNumberOfParameters() AccessFunction as follows:
+should perform the following operations: <br>
+
+Tell the kernel how many <b> PARAMETERS</b> are expected to be found in the input file by calling the
+setNumberOfParameters() AccessFunction as follows: <br>
 Call setNumberOfParameters(4)
 Tell the kernel how many INPUTS are expected to be found in the input file by calling the
 setNumberOfInputs() AccessFunction as follows:
