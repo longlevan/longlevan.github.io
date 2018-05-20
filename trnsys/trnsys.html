@@ -336,6 +336,34 @@ use of these earlier features as they are incompatible with the more recent stan
 
 <h4>Dynamic storage</h4>
 
+
+<h1>Programming a Type in C++</h1>
+It is also possible to program a TRNSYS type using C++ as long as the DLL created by the compiler
+correctly exports the Type. This section will highlight a number of the specific changes needed to use C++. 
+
+<h2>Header file (TRNSYS.h)</h2>
+The TRNSYS.h header file provides the interface for the TRNSYS functions and subroutines. The most
+commonly used functions and subroutines have been included in the header file. Some of the more
+advanced functions and subroutines that should only be used by expert users have not been included. If
+these routines a needed, the programmer should have the knowledge to add these routines in the header
+file when needed
+
+<h2>Type declaration</h2>
+In C++ the Type declaration and the DLL export  is complete in the same linearity
+<code>extern "C" __declspec(dllexport) void TYPEnn(void){}</code>
+
+<h2>Calling TRNSYS function</h2>
+<h3>Calling a TRNSYS Boolean Function</h3>
+<code>if (getIsFirstCallOfSimulation()){}</code>
+
+<h3>Calling a function that passes a number to TRNSYS</h3>
+
+
+<h3>Calling a function that passes a string to TRNSYS</h3>
+
+<h3>Calling a function that receives a string from TRNSYS</h3>
+
+
 <br>
 <h1>Creating a Dynamic-Link Library using MS Visual Studio</h1>
 Opent MS Visual Studio <br>
@@ -465,6 +493,7 @@ comparable accuracy and numerical stability. Users intending to utilize the Powe
 TRNSYS solver (SOLVER 1) should use the SolveDiffEq subroutine whenever possible. 
 
 
+
 <h1>TRNSYS-Python</h1>
 Notice: <br>
 <ul>
@@ -473,8 +502,10 @@ Notice: <br>
 </ul>
 
 C++ offers native alternatives to achieve the functionality of named parameters: <br>
-
-
 </ul>
+
+<h1>The wind blows from the north</h1>
+
+
 </body>
 </html>
