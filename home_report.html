@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+            <!--
+                The <title> tag is required in all HTML documents and it defines the title of the document.
+                The <title> element:
+                    - defines a title in the browser toolbar
+                    - provides a title for the page when it is added to favorites
+                    - displays a title for the page in search-engine results
+            -->
+            <title>Home</title>
+            
+            <!--CSS libraries loaded by CDN (Content Delivery Network)-->
+            <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css">
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/milligram/1.3.0/milligram.min.css">
+            <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">      
+            <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.0/css/buttons.dataTables.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+
+            <style>
+                .navbar {
+                    background-color: lightslategray;
+                    font-size: 1em;
+                    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+                    color: white;
+                    padding: 8px 5px 8px 5px;
+                }
+                .navbar a {
+                    text-decoration: none;
+                    color: inherit;
+                }
+                .navbar-brand {
+                    font-size: 1.2em;
+                    font-weight: 600;
+                }
+                .navbar-item {
+                    font-variant: small-caps;
+                    margin-left: 30px;
+                }            
+
+                #myBtn {
+                    display: none;
+                    position: fixed;
+                    bottom: 20px;
+                    right: 30px;
+                    z-index: 99;
+                    font-size: 18px;
+                    border: none;
+                    outline: none;
+                    background-color: red;
+                    color: white;
+                    cursor: pointer;
+                    padding: 15px;
+                    border-radius: 4px;
+                }
+                #myBtn:hover {
+                    background-color: #555;
+                }
+            </style>
+        
+    </head>
+
+    <body>
+        <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+        
+        <section class="container">
+            <a href="http://www.cenaero.be/"><img src="http://www.cenaero.be/img/commun/2010/cenaero_logo.gif" alt="Cenaero logo"></a>
+        </section>
+        
+        <div class="navbar">
+            <section class="container">
+                <a href="home_report.html" class="navbar-brand">Home</a>
+                <a href="report.html" class="navbar-item">Report</a>
+            </section>            
+        </div>
+        
+        <header class="header">
+            <section class="container">
+                <h1></h1>
+                <p>This report was automatically generated and is under development</p>
+                <p>2019 (C) Cenaero – All rights reserved</p>
+                
+            </section>
+        </header>
+
+        <div class="body-content">
+
+            
+            <section class="container" id="eplus summary">
+
+    <strong<p><font size = "36">This is a concept (demo of concept), not a final product</font></p></strong>
+    
+</section>
+            
+
+            <hr>
+            <section class="container">
+                <footer>
+                    <p> Cenaero © 2019</p>
+                </footer>
+            </section>
+        </div>
+
+        <script>
+            //Get the button
+            var mybutton = document.getElementById("myBtn");
+            
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {scrollFunction()};
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    mybutton.style.display = "block";
+                } else {
+                    mybutton.style.display = "none";
+                }
+            }
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+        </script>
+    </body>
+
+</html>
