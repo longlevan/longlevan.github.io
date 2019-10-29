@@ -22,6 +22,13 @@
             <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.0/css/buttons.dataTables.min.css">
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
 
+            <!--From openstudio report-->
+            <!--<link href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> -->
+            <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+            <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+            <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.8/d3.min.js"></script>
+            <script type="text/javascript" src="http://dimplejs.org/dist/dimple.v2.1.2.min.js"></script>
+
             <style>
                 .navbar {
                     background-color: lightslategray;
@@ -129,7 +136,7 @@
 
                     <strong> The current time: </strong> <span id="time"></span>
                 </p>
-                <p>2019 (C) Cenaero – All rights reserved</p>                
+                             
             </section>
         </header>
 
@@ -138,15 +145,501 @@
             
             <section class="container" id="eplus summary">
 
-    <strong<p><font size = "36">This is a concept (demo of concept), not a final product</font></p></strong>
+    <p style="font-size: 24px;">
+        <strong>Please keep in mind that this is not the final product but just a PoC </strong> <br>
+        <span style="color: blue;"> 
+            Information found below just for the illustration purpose and can be changed at any moment. 
+            Indeed the report should in the future be similar to the one found <a href="report.html">here</a>
+        </span>
+        <br>
+        For more information please <a href= "mailto: vanlong.le@cenaero.be">Send Email</a>
+    </p>
     
 </section>
             
 
+            <section class="container">
+            <p>The following sections show some general information for the whole building. For appartment consumption detail, please go <a href="report.html">here</a></p>            
+            </section>
+            <!--Temporary solution copy past from openstudio report-->
+            <section class="container" id="building-sumary">
+            <p style="font-size: 18px; color: blue;"><strong>Building Sumary</strong></p>
+            <table class="table table-striped table-bordered table-condensed">                  
+                    <tr>
+                        <th>Data</th>                          
+                              <th>Value</th>                      
+                    </tr>                    
+                        <tr>                                  
+                                      <td>Building Name</td>                                  
+                                      <td>X building</td>                          
+                        </tr>                    
+                        <tr>
+                            <td>Total Site Energy</td>                                  
+                                      <td>296,047 kWh</td>                          
+                        </tr>
+                        <tr>                                  
+                                      <td>Total Building Area</td>
+                                      <td>4,050 m^2</td>
+                        </tr>                    
+                        <tr>
+                                      <td>Total Site EUI</td>
+                                      <td>73.09 kWh/m^2</td>
+                        </tr>                    
+                        <tr>                                  
+                                      <td>OpenStudio Standards Building Type</td>                          
+                                      <td>n/a</td>
+                        </tr>                    
+            </table>
+            </section>
+            <hr>
+
+            <section class="container" id="annual_end_use">
+                    <p style="font-size: 18px; color: blue;"><strong> Annual natural gas and electricity consumption (in kWh) by end use</strong></p>
+                        <div id="chartContainer_1">
+                                <script type="text/javascript">
+            
+                                    
+                                      var svg = dimple.newSvg("#chartContainer_1", 500, 240);
+                                      var data = [{"label":"Heating","value":146888.88888888888,"color":"#EF1C21"},{"label":"Interior Lighting","value":8022.222222222223,"color":"#F7DF10"},{"label":"Interior Equipment","value":108116.66666666667,"color":"#4A4D4A"},{"label":"Fans","value":32216.666666666668,"color":"#FF79AD"},{"label":"Pumps","value":644.4444444444445,"color":"#632C94"},{"label":"Water Systems","value":161.11111111111111,"color":"#FFB239"}];
+                                      var myChart = new dimple.chart(svg, data);
+                                      myChart.setBounds(0, 40, 200, 200);
+                                      myChart.addMeasureAxis("p", "value");
+                                      myChart.addSeries("label", dimple.plot.pie);
+                                      myChart.addLegend(225, 50, 175, 180, "left");
+                                    
+            
+                                    
+                                    
+                                    myChart.assignColor('Heating', '#EF1C21', 'white', 1);
+                                    
+                                    
+                                    myChart.assignColor('Interior Lighting', '#F7DF10', 'white', 1);
+                                    
+                                    
+                                    myChart.assignColor('Interior Equipment', '#4A4D4A', 'white', 1);
+                                    
+                                    
+                                    myChart.assignColor('Fans', '#FF79AD', 'white', 1);
+                                    
+                                    
+                                    myChart.assignColor('Pumps', '#632C94', 'white', 1);
+                                    
+                                    
+                                    myChart.assignColor('Water Systems', '#FFB239', 'white', 1);
+                                    
+                                    myChart.draw();
+                                </script>
+                              </div>
+                </section>
+                <hr>
+
+            <section class="container" id="monthly_electricity_consumption">
+                <p style="font-size: 18px; color: blue;"><strong>Electricity Consumption (kWh)</strong></p>
+
+            <div id="chartContainer_5">
+                    <script type="text/javascript">
+                        var svg = dimple.newSvg("#chartContainer_5", 1100, 450);
+                        var data = [{"label":"Heating","label_x":"Jan","value":23.694533175,"color":"#EF1C21"},{"label":"Heating","label_x":"Feb","value":16.68611181944444,"color":"#EF1C21"},{"label":"Heating","label_x":"Mar","value":14.067133775,"color":"#EF1C21"},{"label":"Heating","label_x":"Apr","value":9.399693730555555,"color":"#EF1C21"},{"label":"Heating","label_x":"May","value":9.010839022222223,"color":"#EF1C21"},{"label":"Heating","label_x":"Jun","value":7.5707554888888895,"color":"#EF1C21"},{"label":"Heating","label_x":"Jul","value":7.69730111388889,"color":"#EF1C21"},{"label":"Heating","label_x":"Aug","value":7.724867694444445,"color":"#EF1C21"},{"label":"Heating","label_x":"Sep","value":7.506271383333334,"color":"#EF1C21"},{"label":"Heating","label_x":"Oct","value":9.487543166666667,"color":"#EF1C21"},{"label":"Heating","label_x":"Nov","value":8.665547774999999,"color":"#EF1C21"},{"label":"Heating","label_x":"Dec","value":15.558976416666667,"color":"#EF1C21"},{"label":"Interior Lighting","label_x":"Jan","value":795.9138888888889,"color":"#F7DF10"},{"label":"Interior Lighting","label_x":"Feb","value":710.2638888888889,"color":"#F7DF10"},{"label":"Interior Lighting","label_x":"Mar","value":737.6472222222222,"color":"#F7DF10"},{"label":"Interior Lighting","label_x":"Apr","value":639.2472222222223,"color":"#F7DF10"},{"label":"Interior Lighting","label_x":"May","value":607.2555555555555,"color":"#F7DF10"},{"label":"Interior Lighting","label_x":"Jun","value":551.2055555555555,"color":"#F7DF10"},{"label":"Interior Lighting","label_x":"Jul","value":561.2361111111111,"color":"#F7DF10"},{"label":"Interior Lighting","label_x":"Aug","value":587.0777777777778,"color":"#F7DF10"},{"label":"Interior Lighting","label_x":"Sep","value":618.5916666666667,"color":"#F7DF10"},{"label":"Interior Lighting","label_x":"Oct","value":696.9166666666666,"color":"#F7DF10"},{"label":"Interior Lighting","label_x":"Nov","value":732.5833333333334,"color":"#F7DF10"},{"label":"Interior Lighting","label_x":"Dec","value":784.5583333333334,"color":"#F7DF10"},{"label":"Interior Equipment","label_x":"Jan","value":9071.333333333334,"color":"#4A4D4A"},{"label":"Interior Equipment","label_x":"Feb","value":8192.25,"color":"#4A4D4A"},{"label":"Interior Equipment","label_x":"Mar","value":9238.722222222223,"color":"#4A4D4A"},{"label":"Interior Equipment","label_x":"Apr","value":8940.694444444443,"color":"#4A4D4A"},{"label":"Interior Equipment","label_x":"May","value":9238.722222222223,"color":"#4A4D4A"},{"label":"Interior Equipment","label_x":"Jun","value":8948.583333333334,"color":"#4A4D4A"},{"label":"Interior Equipment","label_x":"Jul","value":9246.861111111111,"color":"#4A4D4A"},{"label":"Interior Equipment","label_x":"Aug","value":9246.861111111111,"color":"#4A4D4A"},{"label":"Interior Equipment","label_x":"Sep","value":8948.583333333334,"color":"#4A4D4A"},{"label":"Interior Equipment","label_x":"Oct","value":9135.055555555557,"color":"#4A4D4A"},{"label":"Interior Equipment","label_x":"Nov","value":8836.416666666666,"color":"#4A4D4A"},{"label":"Interior Equipment","label_x":"Dec","value":9071.333333333334,"color":"#4A4D4A"},{"label":"Fans","label_x":"Jan","value":2736.1,"color":"#FF79AD"},{"label":"Fans","label_x":"Feb","value":2471.3166666666666,"color":"#FF79AD"},{"label":"Fans","label_x":"Mar","value":2736.1,"color":"#FF79AD"},{"label":"Fans","label_x":"Apr","value":2647.838888888889,"color":"#FF79AD"},{"label":"Fans","label_x":"May","value":2736.1,"color":"#FF79AD"},{"label":"Fans","label_x":"Jun","value":2647.838888888889,"color":"#FF79AD"},{"label":"Fans","label_x":"Jul","value":2736.1,"color":"#FF79AD"},{"label":"Fans","label_x":"Aug","value":2736.1,"color":"#FF79AD"},{"label":"Fans","label_x":"Sep","value":2647.838888888889,"color":"#FF79AD"},{"label":"Fans","label_x":"Oct","value":2736.1,"color":"#FF79AD"},{"label":"Fans","label_x":"Nov","value":2647.838888888889,"color":"#FF79AD"},{"label":"Fans","label_x":"Dec","value":2736.1,"color":"#FF79AD"},{"label":"Pumps","label_x":"Jan","value":98.6175,"color":"#632C94"},{"label":"Pumps","label_x":"Feb","value":69.90527777777778,"color":"#632C94"},{"label":"Pumps","label_x":"Mar","value":63.31333333333334,"color":"#632C94"},{"label":"Pumps","label_x":"Apr","value":47.52444444444445,"color":"#632C94"},{"label":"Pumps","label_x":"May","value":45.88888888888889,"color":"#632C94"},{"label":"Pumps","label_x":"Jun","value":39.37361111111111,"color":"#632C94"},{"label":"Pumps","label_x":"Jul","value":40.41444444444445,"color":"#632C94"},{"label":"Pumps","label_x":"Aug","value":40.44611111111111,"color":"#632C94"},{"label":"Pumps","label_x":"Sep","value":39.13277777777778,"color":"#632C94"},{"label":"Pumps","label_x":"Oct","value":48.19777777777778,"color":"#632C94"},{"label":"Pumps","label_x":"Nov","value":44.56222222222222,"color":"#632C94"},{"label":"Pumps","label_x":"Dec","value":68.10527777777779,"color":"#632C94"},{"label":"Heat Recovery","label_x":"Jan","value":0.0,"color":"#CE5921"},{"label":"Heat Recovery","label_x":"Feb","value":0.0,"color":"#CE5921"},{"label":"Heat Recovery","label_x":"Mar","value":0.0,"color":"#CE5921"},{"label":"Heat Recovery","label_x":"Apr","value":0.0,"color":"#CE5921"},{"label":"Heat Recovery","label_x":"May","value":0.0,"color":"#CE5921"},{"label":"Heat Recovery","label_x":"Jun","value":0.0,"color":"#CE5921"},{"label":"Heat Recovery","label_x":"Jul","value":0.0,"color":"#CE5921"},{"label":"Heat Recovery","label_x":"Aug","value":0.0,"color":"#CE5921"},{"label":"Heat Recovery","label_x":"Sep","value":0.0,"color":"#CE5921"},{"label":"Heat Recovery","label_x":"Oct","value":0.0,"color":"#CE5921"},{"label":"Heat Recovery","label_x":"Nov","value":0.0,"color":"#CE5921"},{"label":"Heat Recovery","label_x":"Dec","value":0.0,"color":"#CE5921"},{"label":"Water Systems","label_x":"Jan","value":0.0,"color":"#FFB239"},{"label":"Water Systems","label_x":"Feb","value":0.0,"color":"#FFB239"},{"label":"Water Systems","label_x":"Mar","value":0.0,"color":"#FFB239"},{"label":"Water Systems","label_x":"Apr","value":0.0,"color":"#FFB239"},{"label":"Water Systems","label_x":"May","value":0.0,"color":"#FFB239"},{"label":"Water Systems","label_x":"Jun","value":0.0,"color":"#FFB239"},{"label":"Water Systems","label_x":"Jul","value":0.0,"color":"#FFB239"},{"label":"Water Systems","label_x":"Aug","value":0.0,"color":"#FFB239"},{"label":"Water Systems","label_x":"Sep","value":0.0,"color":"#FFB239"},{"label":"Water Systems","label_x":"Oct","value":0.0,"color":"#FFB239"},{"label":"Water Systems","label_x":"Nov","value":0.0,"color":"#FFB239"},{"label":"Water Systems","label_x":"Dec","value":0.0,"color":"#FFB239"}];
+                        var myChart = new dimple.chart(svg, data);
+                        myChart.setBounds(50, 20, 800, 300);
+                        var x = myChart.addCategoryAxis("x", "label_x");
+                        
+                        x.addOrderRule(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]);
+                        
+                        var y = myChart.addMeasureAxis("y", "value");
+                        var s = myChart.addSeries("label", dimple.plot.bar);
+                        
+                        s.addOrderRule(["Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators"]);
+                        
+                        var legend = myChart.addLegend(900, 200, 125, 300, "left");
+                        // first, store a copy of the original _getEntries method.
+                        legend._getEntries_old = legend._getEntries;
+                        // now override the method
+                        legend._getEntries = function () {
+                            // but call the original version,
+                            // then sort the returned array before returning it.
+                            return legend._getEntries_old.apply(this, arguments).reverse();
+                        };
+                        
+                        
+                        myChart.assignColor('Heating', '#EF1C21', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Heating', '#EF1C21', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Heating', '#EF1C21', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Heating', '#EF1C21', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Heating', '#EF1C21', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Heating', '#EF1C21', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Heating', '#EF1C21', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Heating', '#EF1C21', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Heating', '#EF1C21', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Heating', '#EF1C21', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Heating', '#EF1C21', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Heating', '#EF1C21', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Interior Lighting', '#F7DF10', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Interior Lighting', '#F7DF10', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Interior Lighting', '#F7DF10', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Interior Lighting', '#F7DF10', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Interior Lighting', '#F7DF10', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Interior Lighting', '#F7DF10', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Interior Lighting', '#F7DF10', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Interior Lighting', '#F7DF10', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Interior Lighting', '#F7DF10', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Interior Lighting', '#F7DF10', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Interior Lighting', '#F7DF10', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Interior Lighting', '#F7DF10', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Interior Equipment', '#4A4D4A', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Interior Equipment', '#4A4D4A', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Interior Equipment', '#4A4D4A', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Interior Equipment', '#4A4D4A', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Interior Equipment', '#4A4D4A', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Interior Equipment', '#4A4D4A', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Interior Equipment', '#4A4D4A', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Interior Equipment', '#4A4D4A', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Interior Equipment', '#4A4D4A', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Interior Equipment', '#4A4D4A', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Interior Equipment', '#4A4D4A', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Interior Equipment', '#4A4D4A', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Fans', '#FF79AD', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Fans', '#FF79AD', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Fans', '#FF79AD', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Fans', '#FF79AD', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Fans', '#FF79AD', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Fans', '#FF79AD', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Fans', '#FF79AD', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Fans', '#FF79AD', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Fans', '#FF79AD', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Fans', '#FF79AD', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Fans', '#FF79AD', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Fans', '#FF79AD', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Pumps', '#632C94', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Pumps', '#632C94', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Pumps', '#632C94', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Pumps', '#632C94', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Pumps', '#632C94', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Pumps', '#632C94', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Pumps', '#632C94', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Pumps', '#632C94', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Pumps', '#632C94', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Pumps', '#632C94', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Pumps', '#632C94', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Pumps', '#632C94', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Heat Recovery', '#CE5921', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Heat Recovery', '#CE5921', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Heat Recovery', '#CE5921', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Heat Recovery', '#CE5921', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Heat Recovery', '#CE5921', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Heat Recovery', '#CE5921', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Heat Recovery', '#CE5921', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Heat Recovery', '#CE5921', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Heat Recovery', '#CE5921', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Heat Recovery', '#CE5921', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Heat Recovery', '#CE5921', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Heat Recovery', '#CE5921', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Water Systems', '#FFB239', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Water Systems', '#FFB239', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Water Systems', '#FFB239', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Water Systems', '#FFB239', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Water Systems', '#FFB239', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Water Systems', '#FFB239', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Water Systems', '#FFB239', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Water Systems', '#FFB239', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Water Systems', '#FFB239', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Water Systems', '#FFB239', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Water Systems', '#FFB239', 'gray', 1);
+                        
+                        
+                        myChart.assignColor('Water Systems', '#FFB239', 'gray', 1);
+                        
+                        myChart.draw();
+                        x.titleShape.text('Month');
+                        y.titleShape.text('Electricity Consumption (kWh)');
+                    </script>
+            </div>
+
+            </section>
+
+            <hr>
+
+            <section class="container" id="monthly_natural_gas_consumption">
+                <p style="font-size: 18px; color: blue;"><strong>Natural Gas Consumption (kWh)</strong></p>
+                    <div id="chartContainer_6">
+                            <script type="text/javascript">
+                                var svg = dimple.newSvg("#chartContainer_6", 1100, 450);
+                                var data = [{"label":"Heating","label_x":"Jan","value":25405.5,"color":"#EF1C21"},{"label":"Heating","label_x":"Feb","value":17924.333333333332,"color":"#EF1C21"},{"label":"Heating","label_x":"Mar","value":15086.111111111113,"color":"#EF1C21"},{"label":"Heating","label_x":"Apr","value":10106.611111111111,"color":"#EF1C21"},{"label":"Heating","label_x":"May","value":9661.083333333334,"color":"#EF1C21"},{"label":"Heating","label_x":"Jun","value":8041.444444444444,"color":"#EF1C21"},{"label":"Heating","label_x":"Jul","value":8169.055555555557,"color":"#EF1C21"},{"label":"Heating","label_x":"Aug","value":8190.027777777778,"color":"#EF1C21"},{"label":"Heating","label_x":"Sep","value":7950.972222222223,"color":"#EF1C21"},{"label":"Heating","label_x":"Oct","value":10182.166666666666,"color":"#EF1C21"},{"label":"Heating","label_x":"Nov","value":9267.888888888889,"color":"#EF1C21"},{"label":"Heating","label_x":"Dec","value":16767.583333333336,"color":"#EF1C21"},{"label":"Water Systems","label_x":"Jan","value":13.600095730555557,"color":"#FFB239"},{"label":"Water Systems","label_x":"Feb","value":12.338010397222222,"color":"#FFB239"},{"label":"Water Systems","label_x":"Mar","value":13.61021895,"color":"#FFB239"},{"label":"Water Systems","label_x":"Apr","value":13.161595580555558,"color":"#FFB239"},{"label":"Water Systems","label_x":"May","value":13.557304561111112,"color":"#FFB239"},{"label":"Water Systems","label_x":"Jun","value":13.15253523888889,"color":"#FFB239"},{"label":"Water Systems","label_x":"Jul","value":13.552543086111111,"color":"#FFB239"},{"label":"Water Systems","label_x":"Aug","value":13.552772036111111,"color":"#FFB239"},{"label":"Water Systems","label_x":"Sep","value":13.152690552777779,"color":"#FFB239"},{"label":"Water Systems","label_x":"Oct","value":13.537092169444445,"color":"#FFB239"},{"label":"Water Systems","label_x":"Nov","value":13.10359651388889,"color":"#FFB239"},{"label":"Water Systems","label_x":"Dec","value":13.632132047222221,"color":"#FFB239"}];
+                                var myChart = new dimple.chart(svg, data);
+                                myChart.setBounds(50, 20, 800, 300);
+                                var x = myChart.addCategoryAxis("x", "label_x");
+                                
+                                x.addOrderRule(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]);
+                                
+                                var y = myChart.addMeasureAxis("y", "value");
+                                var s = myChart.addSeries("label", dimple.plot.bar);
+                                
+                                s.addOrderRule(["Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators", "Heating", "Cooling", "Interior Lighting", "Exterior Lighting", "Interior Equipment", "Exterior Equipment", "Fans", "Pumps", "Heat Rejection", "Humidification", "Heat Recovery", "Water Systems", "Refrigeration", "Generators"]);
+                                
+                                var legend = myChart.addLegend(900, 200, 125, 300, "left");
+                                // first, store a copy of the original _getEntries method.
+                                legend._getEntries_old = legend._getEntries;
+                                // now override the method
+                                legend._getEntries = function () {
+                                    // but call the original version,
+                                    // then sort the returned array before returning it.
+                                    return legend._getEntries_old.apply(this, arguments).reverse();
+                                };
+                                
+                                
+                                myChart.assignColor('Heating', '#EF1C21', 'gray', 1);
+                                
+                                
+                                myChart.assignColor('Heating', '#EF1C21', 'gray', 1);
+                                
+                                
+                                myChart.assignColor('Heating', '#EF1C21', 'gray', 1);
+                                
+                                
+                                myChart.assignColor('Heating', '#EF1C21', 'gray', 1);
+                                
+                                
+                                myChart.assignColor('Heating', '#EF1C21', 'gray', 1);
+                                
+                                
+                                myChart.assignColor('Heating', '#EF1C21', 'gray', 1);
+                                
+                                
+                                myChart.assignColor('Heating', '#EF1C21', 'gray', 1);
+                                
+                                
+                                myChart.assignColor('Heating', '#EF1C21', 'gray', 1);
+                                
+                                
+                                myChart.assignColor('Heating', '#EF1C21', 'gray', 1);
+                                
+                                
+                                myChart.assignColor('Heating', '#EF1C21', 'gray', 1);
+                                
+                                
+                                myChart.assignColor('Heating', '#EF1C21', 'gray', 1);
+                                
+                                
+                                myChart.assignColor('Heating', '#EF1C21', 'gray', 1);
+                                
+                                
+                                myChart.assignColor('Water Systems', '#FFB239', 'gray', 1);
+                                
+                                
+                                myChart.assignColor('Water Systems', '#FFB239', 'gray', 1);
+                                
+                                
+                                myChart.assignColor('Water Systems', '#FFB239', 'gray', 1);
+                                
+                                
+                                myChart.assignColor('Water Systems', '#FFB239', 'gray', 1);
+                                
+                                
+                                myChart.assignColor('Water Systems', '#FFB239', 'gray', 1);
+                                
+                                
+                                myChart.assignColor('Water Systems', '#FFB239', 'gray', 1);
+                                
+                                
+                                myChart.assignColor('Water Systems', '#FFB239', 'gray', 1);
+                                
+                                
+                                myChart.assignColor('Water Systems', '#FFB239', 'gray', 1);
+                                
+                                
+                                myChart.assignColor('Water Systems', '#FFB239', 'gray', 1);
+                                
+                                
+                                myChart.assignColor('Water Systems', '#FFB239', 'gray', 1);
+                                
+                                
+                                myChart.assignColor('Water Systems', '#FFB239', 'gray', 1);
+                                
+                                
+                                myChart.assignColor('Water Systems', '#FFB239', 'gray', 1);
+                                
+                                myChart.draw();
+                                x.titleShape.text('Month');
+                                y.titleShape.text('Natural Gas Consumption (kWh)');
+                            </script>
+                          </div>
+            </section>
+            <hr>
+
+            <section class="container">
+                <p style="font-size: 18px; color: blue;">The data about water consumption for the whole building may be also reported here</p>
+            </section>
+
+            <!--##################-->
+
             <hr>
             <section class="container">
                 <footer>
-                    <p> Cenaero © 2019</p>
+                    <p><strong> Cenaero © 2019</strong></p>
                 </footer>
             </section>
         </div>
