@@ -62,6 +62,48 @@
                     background-color: #555;
                 }
             </style>
+
+            <script>
+                function startTime() {
+                    var today = new Date();
+                    var h = today.getHours();
+                    var m = today.getMinutes();
+                    var s = today.getSeconds();
+                    var D = today.getDate();
+                    var Y = today.getFullYear();
+                    var M = today.getMonth();
+                    m = checkTime(m);
+                    s = checkTime(s);
+                    document.getElementById('time').innerHTML = D + "-" + M + "-" + Y + "" + h + ":" + m + ":" + s;
+                    var t = setTimeout(startTime, 500);
+                }
+                function checkTime(i) {
+                    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+                    return i;
+                }
+            </script>
+
+            <script>
+                var endDate = new Date("Nov 14, 2019 11:00:00").getTime()
+                var timer = setInterval(function () {
+                    let now = newDate().getTime();
+                    let t = endDate - now;
+                    if (t>=0) {
+                        let days = Math.floor(t/(1000*60*60*24));
+                        let hours = Math.floor((t%(1000*60*60*24))/(1000*60*60));
+                        let mins = Math.floor((t%(1000*60*60))/(1000*60));
+                        let secs = Math.floor((t%(1000*60))/1000);
+                        document.getElementById("countdown-timer").innerHTML = days + " Days " + hours + " Hours " + mins + " Mins " + secs + " Seconds";                        
+                    } else {
+                        document.getElementById("countdow-timer").innerHTML = " The countdown is over !"
+                    }
+                    
+                },1000);
+
+            
+            </script>
+
+
         
     </head>
 
@@ -82,9 +124,12 @@
         <header class="header">
             <section class="container">
                 <h1></h1>
-                <p>This report was automatically generated and is under development</p>
-                <p>2019 (C) Cenaero – All rights reserved</p>
-                
+                <p>
+                    This report was automatically generated and is under development <br> <br>
+
+                    <strong> The current time: </strong> <span id="time"></span>
+                </p>
+                <p>2019 (C) Cenaero – All rights reserved</p>                
             </section>
         </header>
 
@@ -112,6 +157,7 @@
             
             // When the user scrolls down 20px from the top of the document, show the button
             window.onscroll = function() {scrollFunction()};
+
             function scrollFunction() {
                 if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
                     mybutton.style.display = "block";
@@ -125,6 +171,8 @@
                 document.documentElement.scrollTop = 0;
             }
         </script>
+
+        <script>startTime();</script>
     </body>
 
 </html>
