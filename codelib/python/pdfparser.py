@@ -34,8 +34,8 @@ BiblioFDD_Calibration = os.path.join(BiblioFDD,"Calibration")
 PEPSE = os.path.join(Projects,"pepse")
 biblioPEPSE = os.path.join(PEPSE,"wp_3_2","docs","biblio")
 
-PCC80 = os.path.join(Projects,"PCC80")
-BiblioPCC80 = os.path.join(PCC80,"Biblio")
+PCC80 = os.path.join(Projects,"pcc80")
+BiblioPCC80 = os.path.join(PCC80,"biblio","PCC80")
 
 
 
@@ -125,3 +125,17 @@ def doc_classifier(path):
     with open(path,'rb') as f:
         pass
 
+for (dirname, dirs, files) in os.walk(BiblioPCC80):
+    for filename in files:
+        if filename.endswith(".pdf"):
+            #print(filename)
+            try:
+                #pdf = PdfFileReader(filename)
+                #print(pdf)
+                with open(os.path.join(dirname,filename),'r+', encoding="UTF-8") as f:
+                    if "passive house" in f.read().lower():
+                        print("OK:",os.path.join(dirname,filename))
+                        #subprocess.Popen(["code.cmd",os.path.join(dirname,filename)])
+            except UnicodeDecodeError:
+                print("error:",os.path.join(dirname,filename))
+            
